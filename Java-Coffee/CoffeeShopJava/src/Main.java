@@ -24,9 +24,7 @@ public class Main {
         double mocha  = 3.45;
         double discountTotal;
         double pdDiscount;
-        double testing;
-        double testing2;
-        double taxTotal;
+        double taxTotal =0;
 
         //Gathering User Information
         String coffeeNumber = JOptionPane.showInputDialog("How many coffees did you buy?");
@@ -38,8 +36,8 @@ public class Main {
         String mochaNumber =   JOptionPane.showInputDialog("How many mochas did you buy?");
         int mochasPurchased  = parseInt(mochaNumber);
 
-        String customerCode = JOptionPane.showInputDialog("Please give your customer code." + "\n" + " If you're a student enter: S" + "\n" + "If you are faculty enter: F" );
-
+        String customerCodeInput = JOptionPane.showInputDialog("Please give your customer code." + "\n" + " If you're a student enter: S" + "\n" + "If you are faculty enter: F" );
+        char customerCode = customerCodeInput.charAt(0);
 
 
         //Creating the Coffee Information
@@ -52,35 +50,43 @@ public class Main {
         double drinkTotal  = coffeeTotal + latteTotal + mochaTotal;
 
         //Working through Customer Codes
-        if (customerCode.equals('S')){
+        if (customerCode == 'S'){
             taxTotal = drinkTotal;
-        } if (customerCode.equals('F')){
-            taxTotal = drinkTotal * 0.06;
-        } else {
+        }
+        else if (customerCode =='s'){
+            taxTotal = drinkTotal;
+        }
+        else if (customerCode =='F'){
+            taxTotal = drinkTotal * 1.06;
+        }
+        else if (customerCode =='f'){
+            taxTotal = drinkTotal * 1.06;
+        }
+        else {
             JOptionPane.showMessageDialog(null, "Incorrect Customer Code, please enter S for student or F for faculty.");
         }
 
-         if (drinkTotal <= 20.00)
-            discountTotal = drinkTotal * 0.97;
-         else if (drinkTotal >= 20.00 && drinkTotal < 40.00)
-            discountTotal = drinkTotal * 0.95;
-         else if (drinkTotal >= 40.00 && drinkTotal <= 60.00)
-            discountTotal = drinkTotal * 0.90;
-         else if (drinkTotal >= 60.00 && drinkTotal <= 75.00)
-             discountTotal = drinkTotal - ( drinkTotal * 0.15);
-         else if (drinkTotal >= 75.00)
-             discountTotal = drinkTotal * 0.80;
-         else discountTotal = drinkTotal;
+        if (taxTotal <= 20.00)
+            discountTotal = taxTotal * 0.97;
+        else if (drinkTotal >= 20.00 && drinkTotal < 40.00)
+            discountTotal = taxTotal * 0.95;
+        else if (drinkTotal >= 40.00 && drinkTotal <= 60.00)
+            discountTotal = taxTotal * 0.90;
+        else if (drinkTotal >= 60.00 && drinkTotal <= 75.00)
+            discountTotal = taxTotal - ( taxTotal * 0.15);
+        else if (drinkTotal >= 75.00)
+            discountTotal = taxTotal * 0.80;
+        else discountTotal = taxTotal;
 
 
 
         if (coffeesPurchased >= 60){
             pdDiscount = discountTotal - 5;
-         } else if (lattesPurchased >= 40){
+        } else if (lattesPurchased >= 40){
             pdDiscount = discountTotal - 10;
-         } else if (mochasPurchased >= 50){
-             pdDiscount = discountTotal - 15;
-         } else pdDiscount = discountTotal;
+        } else if (mochasPurchased >= 50){
+            pdDiscount = discountTotal - 15;
+        } else pdDiscount = discountTotal;
 
         double finalTotal = pdDiscount;
 
