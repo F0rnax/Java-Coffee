@@ -25,6 +25,7 @@ public class Main {
         double discountTotal;
         double pdDiscount;
         double testing;
+        double testing2;
         double taxTotal;
 
         //Gathering User Information
